@@ -16,11 +16,9 @@ void Chest::addItem(Item* object) {
 }
 
 void Chest::removeItem(Item* object) {
-    return;
 }
 
 Item* Chest::showItem() {
-    return nullptr;
 }
 
 double Chest::itemValue() {

@@ -2,11 +2,12 @@
 #define _CHARACTER_H
 
 #include <string>
+#include <fstream>
 
 class Character {
-public: 
+public:
 	Character(std::string, unsigned short, unsigned int, unsigned int, std::string);
-	Character();
+	~Character();
 	unsigned short getLevel();
 	unsigned int getMana();
 	unsigned int getHealth();
@@ -17,13 +18,15 @@ public:
     void addHealth(unsigned int amount);
     void deleteMana(unsigned int amount);
     void deleteHealth(unsigned int amount);
-    void drawCharacter();
-private: 
+    std::string drawCharacter();
+private:
     const std::string name;
     const std::string playerClass;
     unsigned short level;
     unsigned int health;
     unsigned int mana;
+
+    friend class Item;
 };
 
 #endif //_CHARACTER_H

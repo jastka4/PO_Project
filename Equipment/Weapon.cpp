@@ -16,9 +16,8 @@ void Weapon::draw() {
 }
 
 int* Weapon::showStats() {
-    return nullptr;
 }
 
 std::string Weapon::myType() {
-    return "";
+    return "weapon";
 }

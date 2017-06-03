@@ -18,9 +18,9 @@ void Spell::draw() {
 }
 
 int* Spell::showStats() {
-    return nullptr;
+
 }
 
 std::string Spell::myType() {
-    return "";
+    return "spell";
 }

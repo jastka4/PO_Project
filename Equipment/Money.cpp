@@ -15,12 +15,10 @@ void Money::draw()
 {
 }
 
-int * Money::showStats()
-{
-	return nullptr;
+int * Money::showStats(){
 }
 
 std::string Money::myType()
 {
-	return std::string();
+	return "money";
 }

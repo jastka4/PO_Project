@@ -4,17 +4,17 @@
 #include "Inventory.h"
 
 class Backpack: public Inventory {
-public: 
+public:
     Backpack(size_t);
     ~Backpack();
     const std::vector<Item*>& showAllItems();
-    void addItem(Item* object) = 0;
-	void removeItem(Item* object) = 0;
-	Item* showItem() = 0;
-	double itemValue() = 0;
-    unsigned short getCapacity() = 0;
-    unsigned short getActualSize() = 0;
-private: 
+    void addItem(Item* object);
+	void removeItem(Item* object);
+	Item* showItem();
+	double itemValue();
+    unsigned short getCapacity();
+    unsigned short getActualSize();
+private:
     const size_t size;
     std::vector<Item*> inventory;
 };
