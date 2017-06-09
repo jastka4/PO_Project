@@ -6,10 +6,9 @@
 
 class Weapon: public Item {
 public: 
-    Weapon(std::string name, unsigned int weight, double price, unsigned int damage);
+    Weapon(std::string, unsigned int, double, unsigned int);
     ~Weapon();
     void use();
-    void draw();
     int* showStats();
     std::string myType();
 private: 

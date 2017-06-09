@@ -10,10 +10,10 @@ public:
     const std::vector<Item*>& showAllItems();
     void addItem(Item* object) = 0;
 	void removeItem(Item* object) = 0;
-    Item* showItem() = 0;
+    Item* showItem() const = 0;
     double itemValue() = 0;
-    unsigned short getCapacity() = 0;
-    unsigned short getActualSize() = 0;
+    size_t getCapacity() = 0;
+    size_t getActualSize() = 0;
 private: 
     const size_t size;
     std::vector<Item*> inventory;

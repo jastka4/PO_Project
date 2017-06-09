@@ -1,7 +1,9 @@
 #include "Spell.h"
 
+using namespace std;
+
 Spell::Spell(std::string name, unsigned int weight, double price, unsigned int cost, double cooldown):
-	Item(name, weight, price), cooldown(cooldown) {
+	Item(name, weight, price, source), cooldown(cooldown) {
 
 }
 
@@ -13,12 +15,8 @@ void Spell::use() {
     return;
 }
 
-void Spell::draw() {
-    return;
-}
-
 int* Spell::showStats() {
-
+	return nullptr;
 }
 
 std::string Spell::myType() {

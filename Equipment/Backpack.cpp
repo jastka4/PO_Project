@@ -8,7 +8,6 @@ Backpack::Backpack(size_t size):
 }
 
 Backpack::~Backpack() {
-    size = 0;
     inventory.clear();
 }
 
@@ -24,17 +23,18 @@ void Backpack::removeItem(Item* object) {
 
 }
 
-Item* Backpack::showItem() {
+Item* Backpack::showItem() const {
+	return nullptr;
 }
 
 double Backpack::itemValue() {
 	return 0;
 }
 
-unsigned short Backpack::getCapacity() {
+size_t Backpack::getCapacity() {
 	return size;
 }
 
-unsigned short Backpack::getActualSize() {
+size_t Backpack::getActualSize() {
 	return inventory.size();
 }

@@ -9,7 +9,6 @@ public:
     Armour(std::string, unsigned int, double, unsigned int);
     ~Armour();
     void use();
-    void draw();
     int* showStats();
     std::string myType();
 private: 

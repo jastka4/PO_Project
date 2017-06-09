@@ -9,7 +9,6 @@ public:
 	Money(std::string, unsigned int, double, double);
 	~Money();
 	void use();
-	void draw();
 	int* showStats();
 	std::string myType();
 private:

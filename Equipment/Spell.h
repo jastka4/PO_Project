@@ -6,10 +6,9 @@
 class Spell: public Item {
 public: 
 
-    Spell(std::string name, unsigned int weight, double price, unsigned int cost, double cooldown);
+    Spell(std::string, unsigned int, double, unsigned int, double);
     ~Spell();
     void use();
-    void draw();
     int* showStats();
     std::string myType();
 private: 

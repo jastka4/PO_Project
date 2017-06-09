@@ -19,6 +19,7 @@ public:
     void deleteMana(unsigned int amount);
     void deleteHealth(unsigned int amount);
     std::string drawCharacter();
+	friend std::ostream& operator<<(std::ostream &ostr, Character &obj);
 private:
     const std::string name;
     const std::string playerClass;

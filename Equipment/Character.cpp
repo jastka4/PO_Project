@@ -51,24 +51,33 @@ void Character::deleteHealth(unsigned int amount) {
 }
 
 string Character::drawCharacter() {
+    ifstream file ("Character/Knight_axe.txt");             //Open file
 
-    ifstream File ("Character/Knight.txt");             //Open file
+    string lines = "";									//Store all lines
 
-    std::string Lines = "";                             //Store all lines
-
-    if (File){                                          //Check if everything is good
-        while (File.good ()){
-	    std::string TempLine;                           //Temp line
-	    std::getline (File , TempLine);                 //Get temp line
+    if (file){                                          //Check if everything is good
+        while (file.good ()){
+	    string TempLine;								//Temp line
+	    getline (file , TempLine);						//Get temp line
 	    TempLine += "\n";                               //Add newline character
 
-	    Lines += TempLine;                              //Add newline
+	    lines += TempLine;                              //Add newline
         }
-	return Lines;
     } else {
-        Lines = "ERROR File does not exist.";           //Return error
+        lines = "ERROR File does not exist.";           //Return error
     }
 
-    File.close ();                                      //Close file
-    return Lines;                                       //Print it to the screen
+    file.close ();                                      //Close file
+	return lines;                                       //Print it to the screen
+}
+
+ostream & operator<<(ostream & ostr, Character & obj)
+{
+	ostr << obj.drawCharacter()
+		 << "Name: " << obj.getPlayerClass() << endl
+		 << "Class: " << obj.getPlayerClass() << endl
+		 << "Level: " << obj.getLevel() << endl
+		 << "Health: " << obj.getHealth() << endl
+		 << "Mana: " << obj.getMana() << endl;
+	return ostr;
 }
