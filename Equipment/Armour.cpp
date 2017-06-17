@@ -15,7 +15,7 @@ void Armour::use() {
 
 
 int* Armour::showStats() {
-	return nullptr;
+    return nullptr;	
 }
 
 std::string Armour::myType() {

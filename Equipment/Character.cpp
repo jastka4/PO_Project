@@ -1,5 +1,6 @@
 #include "Character.h"
 #include <iostream>
+#include <ncurses.h>
 
 using namespace std;
 
@@ -51,7 +52,7 @@ void Character::deleteHealth(unsigned int amount) {
 }
 
 string Character::drawCharacter() {
-    ifstream file ("Character/Knight_axe.txt");             //Open file
+    ifstream file ("Character/knight.txt");             //Open file
 
     string lines = "";									//Store all lines
 
@@ -71,13 +72,12 @@ string Character::drawCharacter() {
 	return lines;                                       //Print it to the screen
 }
 
-ostream & operator<<(ostream & ostr, Character & obj)
-{
-	ostr << obj.drawCharacter()
-		 << "Name: " << obj.getPlayerClass() << endl
-		 << "Class: " << obj.getPlayerClass() << endl
-		 << "Level: " << obj.getLevel() << endl
-		 << "Health: " << obj.getHealth() << endl
-		 << "Mana: " << obj.getMana() << endl;
-	return ostr;
+void Character::displayStats() {
+	int row = 4,
+	    col = 35;
+	mvprintw(row++, col,("NAME: " + name).c_str());
+	mvprintw(row++, col,("CLASS: " + playerClass).c_str());	
+	mvprintw(row++, col,("LEVEL: " + to_string(level)).c_str());
+	mvprintw(row++, col,("HEALTH: " + to_string(health)).c_str());
+	mvprintw(row++, col,("MANA: " + to_string(mana)).c_str());
 }
