@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Spell::Spell(std::string name, unsigned int weight, double price, unsigned int cost, double cooldown):
+Spell::Spell(std::string name, double weight, unsigned int price, unsigned int cost, unsigned int cooldown):
 	Item(name, weight, price, source), cooldown(cooldown) {
 
 }

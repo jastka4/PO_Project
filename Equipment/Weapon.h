@@ -6,7 +6,7 @@
 
 class Weapon: public Item {
 public: 
-    Weapon(std::string, unsigned int, double, unsigned int);
+    Weapon(std::string, double, unsigned int, std::string, unsigned int);
     ~Weapon();
     void use();
     int* showStats();

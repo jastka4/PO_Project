@@ -1,6 +1,6 @@
 #declaration of variables
 CC = g++
-CC_FLAGS = -Wall -Wextra -std=gnu++0x
+CC_FLAGS = -Wall -Wextra -std=gnu++0x -g
 #-pedantic 
 # File names
 EXEC = run

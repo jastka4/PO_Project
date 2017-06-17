@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Money::Money(std::string name, unsigned int weight, double price, double amount):
-	Item(name, weight, price, source), amount(amount){}
+Money::Money(std::string name, double weight, double amount):
+	Item(name, weight, amount, source), amount(amount){}
 
 Money::~Money()
 {

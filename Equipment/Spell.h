@@ -6,14 +6,14 @@
 class Spell: public Item {
 public: 
 
-    Spell(std::string, unsigned int, double, unsigned int, double);
+    Spell(std::string, double,  unsigned int, unsigned int, unsigned int);
     ~Spell();
     void use();
     int* showStats();
     std::string myType();
 private: 
     unsigned int cost;
-    double cooldown;
+    unsigned int cooldown;
 };
 
 #endif //_SPELL_H

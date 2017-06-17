@@ -3,6 +3,7 @@
 
 #include <string>
 #include <fstream>
+#include <vector>
 
 class Character {
 public:
@@ -19,7 +20,7 @@ public:
 	void deleteMana(unsigned int amount);
 	void deleteHealth(unsigned int amount);
 	std::string drawCharacter();
-	void displayStats();
+	std::vector<std::string> displayStats();
 private:
 	const std::string name;
 	const std::string playerClass;

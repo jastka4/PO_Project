@@ -20,8 +20,8 @@ void Chest::addItem(Item* object) {
 void Chest::removeItem(Item* object) {
 }
 
-Item* Chest::showItem() const {
-	return nullptr;
+Item* Chest::showItem(int place) const {
+	return inventory[place];
 }
 
 double Chest::itemValue() {

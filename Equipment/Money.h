@@ -6,7 +6,7 @@
 class Money: private Item
 {
 public:
-	Money(std::string, unsigned int, double, double);
+	Money(std::string, double, double);
 	~Money();
 	void use();
 	int* showStats();

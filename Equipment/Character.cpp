@@ -1,6 +1,5 @@
 #include "Character.h"
 #include <iostream>
-#include <ncurses.h>
 
 using namespace std;
 
@@ -72,12 +71,13 @@ string Character::drawCharacter() {
 	return lines;                                       //Print it to the screen
 }
 
-void Character::displayStats() {
-	int row = 4,
-	    col = 35;
-	mvprintw(row++, col,("NAME: " + name).c_str());
-	mvprintw(row++, col,("CLASS: " + playerClass).c_str());	
-	mvprintw(row++, col,("LEVEL: " + to_string(level)).c_str());
-	mvprintw(row++, col,("HEALTH: " + to_string(health)).c_str());
-	mvprintw(row++, col,("MANA: " + to_string(mana)).c_str());
+vector<string> Character::displayStats() {
+	vector<string> lines(5);
+	lines[0] = "NAME: " +  name;
+	lines[1] = "CLASS: " + playerClass;
+	lines[2] = "LEVEL: " + to_string(level);
+	lines[3] = "HEALTH: " + to_string(health);
+	lines[4] = "MANA: " + to_string(mana);
+	
+	return lines;
 }

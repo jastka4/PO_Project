@@ -6,7 +6,7 @@ using namespace std;
 Item::Item(std::string name, unsigned int weight, double price, string source):
 	name(name), weight(weight), price(price), source(source){}
 
-Item::~Item() //TODO: sprawdzic czy tak moze byc
+Item::~Item() //TODO: check if this is right
 {
 	name = "";
 	weight = 0;
@@ -14,26 +14,26 @@ Item::~Item() //TODO: sprawdzic czy tak moze byc
 	source = "";
 }
 
-string Item::draw(string source)
+vector<string> Item::draw()
 {
-	ifstream File(source);									//Open file
+	ifstream file(source);									//Open file
 
-	string Lines = "";										//Store all lines
+	vector<string> lines;										//Store all lines
 
-	if (File) {												//Check if everything is good
-		while (File.good()) {
-			string TempLine;								//Temp line
-			getline(File, TempLine);						//Get temp line
-			TempLine += "\n";                               //Add newline character
+	if (file) {												//Check if everything is good
+		while (file.good()) {
+			string tempLine;								//Temp line
+			getline(file, tempLine);						//Get temp line
+			//tempLine += "\n";                               //Add newline character
 
-			Lines += TempLine;                              //Add newline
+			lines.push_back(tempLine);                              //Add newline
 		}
-		return Lines;
+		return lines;
 	}
 	else {
-		Lines = "ERROR File does not exist.";				//Return error
+		//lines = "ERROR File does not exist.";				//Return error
 	}
 
-	File.close();											//Close file
-	return Lines;											//Print it to the screen
+	file.close();											//Close file
+	return lines;											//Print it to the screen
 }
