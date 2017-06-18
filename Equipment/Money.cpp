@@ -13,8 +13,13 @@ void Money::use()
 {
 }
 
-int * Money::showStats(){
-	return nullptr;
+vector<string> Money::showStats(){
+	vector<string> stats;
+	stats.push_back(name);
+	stats.push_back("WEIGHT: " + to_string(weight));
+	stats.push_back("PRICE: " + to_string(price));
+	stats.push_back("Amount: " + to_string(amount));
+	return stats;
 }
 
 std::string Money::myType()

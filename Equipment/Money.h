@@ -9,7 +9,7 @@ public:
 	Money(std::string, double, double);
 	~Money();
 	void use();
-	int* showStats();
+	std::vector<std::string> showStats();
 	std::string myType();
 private:
 	double amount;

@@ -9,7 +9,7 @@ public:
     Spell(std::string, double,  unsigned int, unsigned int, unsigned int);
     ~Spell();
     void use();
-    int* showStats();
+    std::vector<std::string> showStats();
     std::string myType();
 private: 
     unsigned int cost;

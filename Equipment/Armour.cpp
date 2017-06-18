@@ -14,8 +14,13 @@ void Armour::use() {
 }
 
 
-int* Armour::showStats() {
-    return nullptr;	
+vector<string> Armour::showStats() {
+	vector<string> stats;
+	stats.push_back(name);
+	stats.push_back("WEIGHT: " + to_string(weight));
+	stats.push_back("PRICE: " + to_string(price));
+	stats.push_back("DEFENSE: " + to_string(defense));
+	return stats;
 }
 
 std::string Armour::myType() {

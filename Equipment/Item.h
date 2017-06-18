@@ -12,8 +12,9 @@ public:
 	~Item();
 	virtual void use() = 0;
 	std::vector<std::string> draw();
-	virtual int* showStats() = 0;
+	virtual std::vector<std::string> showStats() = 0;
 	virtual std::string myType() = 0;
+protected:
 	std::string name;
 	double weight;
 	unsigned int price;

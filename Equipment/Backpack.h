@@ -2,7 +2,6 @@
 #define _BACKPACK_H
 
 #include "Inventory.h"
-#include <cmath>
 
 class Backpack: public Inventory {
 public:
@@ -10,7 +9,7 @@ public:
 	~Backpack();
 	const std::vector<Item*>& showAllItems();
 	void addItem(Item* object);
-	void removeItem(Item* object);
+	void removeItem(int);
 	Item* showItem(int) const;
 	double itemValue();
 	size_t getCapacity();

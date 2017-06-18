@@ -14,8 +14,13 @@ void Weapon::use() {
     return;
 }
 
-int* Weapon::showStats() {
-	return nullptr;
+vector<string> Weapon::showStats() {
+	vector<string> stats;
+	stats.push_back(name);
+	stats.push_back("WEIGHT: " + to_string(weight));
+	stats.push_back("PRICE: " + to_string(price));
+	stats.push_back("DAMAGE: " + to_string(damage));
+	return stats;
 }
 
 string Weapon::myType() {

@@ -9,7 +9,7 @@ public:
     Armour(std::string, unsigned int, double, unsigned int);
     ~Armour();
     void use();
-    int* showStats();
+    std::vector<std::string> showStats();
     std::string myType();
 private: 
     unsigned int defense;

@@ -8,7 +8,7 @@ class Inventory {
 public: 
 	virtual const std::vector<Item*>& showAllItems() = 0;
 	virtual void addItem(Item*) = 0;
-	virtual void removeItem(Item*) = 0;
+	virtual void removeItem(int) = 0;
 	virtual Item* showItem(int) const = 0;
 	virtual double itemValue() = 0;
 	virtual size_t getCapacity() = 0;

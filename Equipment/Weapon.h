@@ -9,7 +9,7 @@ public:
     Weapon(std::string, double, unsigned int, std::string, unsigned int);
     ~Weapon();
     void use();
-    int* showStats();
+    std::vector<std::string> showStats();
     std::string myType();
 private: 
     unsigned int damage;

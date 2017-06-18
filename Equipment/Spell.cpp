@@ -15,8 +15,13 @@ void Spell::use() {
     return;
 }
 
-int* Spell::showStats() {
-	return nullptr;
+vector<string> Spell::showStats() {
+	vector<string> stats;
+	stats.push_back(name);
+	stats.push_back("WEIGHT: " + to_string(weight));
+	stats.push_back("PRICE: " + to_string(price));
+	stats.push_back("COOLDOWN: " + to_string(cooldown));
+	return stats;
 }
 
 std::string Spell::myType() {
