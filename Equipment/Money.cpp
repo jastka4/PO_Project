@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Money::Money(std::string name, double weight, double amount):
+Money::Money(std::string name, double weight, string source, double amount):
 	Item(name, weight, amount, source), amount(amount){}
 
 Money::~Money()

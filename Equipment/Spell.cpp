@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Spell::Spell(std::string name, double weight, unsigned int price, unsigned int cost, unsigned int cooldown):
-	Item(name, weight, price, source), cooldown(cooldown) {
+Spell::Spell(std::string name, double weight, unsigned int price, string source, unsigned int cost, unsigned int cooldown):
+	Item(name, weight, price, source), cost(cost), cooldown(cooldown) {
 
 }
 
@@ -12,7 +12,7 @@ Spell::~Spell() {
 }
 
 void Spell::use() {
-    return;
+	return;
 }
 
 vector<string> Spell::showStats() {
@@ -20,6 +20,7 @@ vector<string> Spell::showStats() {
 	stats.push_back(name);
 	stats.push_back("WEIGHT: " + to_string(weight));
 	stats.push_back("PRICE: " + to_string(price));
+	stats.push_back("MANA COST: " + to_string(cost));
 	stats.push_back("COOLDOWN: " + to_string(cooldown));
 	return stats;
 }

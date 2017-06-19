@@ -6,8 +6,8 @@
 
 class Armour: public Item {
 public: 
-    Armour(std::string, unsigned int, double, unsigned int);
-    ~Armour();
+    Armour(std::string, unsigned int, double, std::string, unsigned int);
+    virtual ~Armour();
     void use();
     std::vector<std::string> showStats();
     std::string myType();

@@ -19,18 +19,34 @@ int main() {
     	Character player("Roland", 1, 500, 200, "Knight");
 	Backpack backpack(9);
 	Chest chest(16);
-	//Armour* armour = new Armour("Plate armour", 100, 350, 50);		TODO: copy from Weapon to other items; fix item description after move; do serialization
-	//Armour* shield = new Armour("Shield", 10, 130, 10);
-	//Money* money = new Money("Novigrad coins", 1, 500);
-	//Spell* fire_spell = new Spell("Fire breath", 2.4, 90, 45, 30);
-	Weapon* sword = new Weapon("Sword of justice", 15, 300, "Character/sword.txt", 35);
-	Weapon* axe = new Weapon("Steel axe", 23, 245, "Character/axe.txt", 59);
+	Armour* armour = new Armour("Plate armour", 100, 350, "Character/armour.txt", 50);		//TODO: fix item description after move; do serialization
+	Armour* boots = new Armour("Lether boots", 2, 27, "Character/boots.txt", 7);
+	Armour* helmet = new Armour("Plate helmet", 7, 212, "Character/helmet.txt", 29);
+	Armour* shield = new Armour("Shield of darkness", 10, 130, "Character/shield.txt", 10);
+	Money* crown = new Money("Novigrad crown",1.3, "Character/money.txt", 500);
+	Money* floren = new Money("Nilfgaardian floren", 1.7, "Character/money.txt", 950);
+	Spell* fire_spell = new Spell("Fire breath", 2.4, 90, "Character/spell.txt", 45, 30);
+	Weapon* axe = new Weapon("Steel axe", 19, 245, "Character/axe.txt", 59);
 	Weapon* bow = new Weapon("Elvish longbow", 5.5, 225, "Character/bow.txt", 28);
-
-	backpack.addItem(sword);
-	cout << backpack.getActualSize();
-	backpack.addItem(axe);
+	Weapon* labrys = new Weapon("Labrys", 23, 304, "Character/labrys.txt", 59);
+	Weapon* mace = new Weapon("Dwarf mace", 17, 249, "Character/mace.txt", 43); 
+	Weapon* sword = new Weapon("Sword of justice", 15, 300, "Character/sword.txt", 35);
+	Weapon* warhammer = new Weapon("Mighty war hammer", 29, 371, "Character/warhammer.txt", 64); 
+	
+	backpack.addItem(armour);
 	backpack.addItem(bow);
+	backpack.addItem(crown);
+	backpack.addItem(helmet);
+	backpack.addItem(sword);
+
+	chest.addItem(axe);
+	chest.addItem(boots);
+	chest.addItem(fire_spell);
+	chest.addItem(floren);
+	chest.addItem(labrys);
+	chest.addItem(mace);
+	chest.addItem(shield);
+	chest.addItem(warhammer);
 
 	initscr();		//ncurses start
 	noecho();		//pressed characters do not print on the screen
@@ -91,13 +107,13 @@ int main() {
 				    highlight = 0;
 				vector<Item*> backpackInvStats = backpack.showAllItems(); 
 				
-				string description[] = {"Press ENTER to view stats", "Press M to move item to the chest", "Press B to get to the menu"};
+				string description[] = {"Press ENTER to view item stats", "Press M to move item to the chest", "Press B to get back to the menu"};	//control description
 				for(int i = 0; i < 3; i++) {
 					mvwprintw(descriptionwin, 0, i*45, description[i].c_str());
 					wrefresh(descriptionwin);
 				}
 
-				do {
+				do {					//prints backpack inventory in to the screen 3x3
 					vector< vector<string> > backpackInv = backpack.showInventory();
 					for(unsigned int i = 0, d = 0, p = 4; i < backpackInv.size(); i++, d += 12) {
 						if(i > 2 && i < 5) p = 4+6;
@@ -150,9 +166,13 @@ int main() {
 							break;
 						case 'm':
 							if(highlight < backpack.getActualSize()) {
-								chest.addItem(backpack.showItem(highlight));
-								backpack.removeItem(highlight);
-								mvwprintw(inventorywin, 0, 0, "Move successful");
+								if(chest.getActualSize() < chest.getCapacity()) {
+									chest.addItem(backpack.showItem(highlight));
+									backpack.removeItem(highlight);
+									mvwprintw(inventorywin, 0, 0, "Move successful");
+								} else {
+									mvwprintw(inventorywin, 0, 0, "Can't move the item! Chest is full!");
+								}
 							} else {
 								mvwprintw(inventorywin, 0, 0, "Can't move an empty slot!");
 							}
@@ -171,14 +191,14 @@ int main() {
 				    highlight = 0;
 				vector<Item*> chestInvStats = chest.showAllItems(); 
 				
-				string description[] = {"Press ENTER to view stats", "Press M to move item to the backpack", "Press B to get back to the menu"};
+				string description[] = {"Press ENTER to view item stats", "Press M to move item to the backpack", "Press B to get back to the menu"};	//control description
 				for(int i = 0; i < 3; i++) {
 					mvwprintw(descriptionwin, 0, i*45, description[i].c_str());
 					wrefresh(descriptionwin);
 				}
 
-				do {
-					vector< vector<string> > chestInv = chest.showInventory();
+				do {					//prints chest inventory to the screen 4x4
+					vector< vector<string> > chestInv = chest.showInventory();	
 					for(unsigned int i = 0, d = 0, p = 2; i < chestInv.size(); i++, d += 12) {
 						if(i > 3 && i < 7) p = 2+6;
 						else if (i > 7 && i < 11) p = 2+12;
@@ -195,27 +215,27 @@ int main() {
 							//function for moving in the inventory
 					itemChoice = wgetch(playerwin);
 					choice = itemChoice;
-					
+							
 					switch(itemChoice) {
 						case KEY_UP:
-							highlight -= 4;
+							highlight -= 4;			//move one field up 
 							if(highlight < 0)
-								highlight += 4;
+								highlight += 4;		//if the user tries to get to the field that doesn't exist it prevents the user from doing this
 							break;
 						case KEY_DOWN:
-							highlight += 4;
+							highlight += 4;			//move one field down
 							if(highlight > 15)
-								highlight -= 4;
+								highlight -= 4;		//if the user tries to get to the field that doesn't exist it prevents the user from doing this
 							break;
 						case KEY_LEFT:
-							highlight--;
+							highlight--;			//move one field left
 							if(highlight == -1)
-								highlight = 0;
+								highlight = 0;		//if the user tries to get to the field that doesn't exist it prevents the user from doing this
 							break;
 						case KEY_RIGHT:
-							highlight++;
+							highlight++;			//move one field right
 							if(highlight == 16)
-								highlight = 15;
+								highlight = 15;		//if the user tries to get to the field that doesn't exist it prevents the user from doing this
 							break;
 						case 10:
 							wclear(inventorywin);		//clear inventory window				
@@ -231,9 +251,14 @@ int main() {
 							break;
 						case 'm':
 							if(highlight < chest.getActualSize()) {
-								backpack.addItem(chest.showItem(highlight));
-								chest.removeItem(highlight);
-								mvwprintw(inventorywin, 1, 0, "Move successful");
+								if(backpack.getActualSize() < backpack.getCapacity()) {
+									backpack.addItem(chest.showItem(highlight));
+									chest.removeItem(highlight);
+									mvwprintw(inventorywin, 0, 0, "Move successful");
+								} else {
+									mvwprintw(inventorywin, 0, 0, "Can't move the item");
+									mvwprintw(inventorywin, 1, 0, "Backpack is full!");
+								}
 							} else {
 								mvwprintw(inventorywin, 1, 0, "Can't move an empty slot!");
 							}
@@ -246,12 +271,13 @@ int main() {
 				break;
 				}
 			case 'e':
-				programOn = false;
+				programOn = false;	//if program gets char 'e' it will set programOn to false and end the main do-while loop
 				break;
 			default:
 				break;
 		}
-		choice = wgetch(menuwin);
+		wmove(menuwin, 1, 65);
+		choice = wgetch(menuwin);		//move coursor to the main menu
 	}while(programOn == true);
 	
 	//makes sure program waits before exiting

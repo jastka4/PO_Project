@@ -3,11 +3,11 @@
 
 #include "Item.h"
 
-class Money: private Item
+class Money: public Item
 {
 public:
-	Money(std::string, double, double);
-	~Money();
+	Money(std::string, double, std::string, double);
+	virtual ~Money();
 	void use();
 	std::vector<std::string> showStats();
 	std::string myType();

@@ -5,15 +5,14 @@
 
 class Spell: public Item {
 public: 
-
-    Spell(std::string, double,  unsigned int, unsigned int, unsigned int);
-    ~Spell();
-    void use();
-    std::vector<std::string> showStats();
-    std::string myType();
+	Spell(std::string, double,  unsigned int, std::string, unsigned int, unsigned int);
+	virtual ~Spell();
+	void use();
+	std::vector<std::string> showStats();
+	std::string myType();
 private: 
-    unsigned int cost;
-    unsigned int cooldown;
+	unsigned int cost;
+	unsigned int cooldown;
 };
 
 #endif //_SPELL_H
