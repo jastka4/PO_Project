@@ -5,7 +5,7 @@ using namespace std;
 
 Weapon::Weapon(string name, double weight, unsigned int price, string source, unsigned int damage):
 	Item(name, weight, price, source), damage(damage) {}
-
+	
 Weapon::~Weapon() {
 
 }

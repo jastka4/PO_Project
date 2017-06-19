@@ -9,7 +9,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
  
 # Main target
 $(EXEC): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(EXEC) -lncurses
+	$(CC) $(OBJECTS) -o $(EXEC) -lncurses -lboost_serialization
 # To obtain object files
 %.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@

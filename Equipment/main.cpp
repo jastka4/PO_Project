@@ -5,8 +5,12 @@
 #include "Money.h"
 #include "Spell.h"
 #include "Weapon.h"
+
 #include <iostream>
 #include <curses.h>
+
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 using namespace std;
 
@@ -14,6 +18,13 @@ int xMax = 0;
 int yMax = 0;
 bool programOn = true;
 unsigned char choice = 'p';
+const char* filename = "saved.txt";		//file to save/load inventory
+	//make the archive
+std::ofstream ofs(filename);
+boost::archive::text_oarchive oa(ofs);
+    	//open the archive
+//std::ifstream ifs(filename);
+//boost::archive::text_iarchive ia(ifs);
 
 int main() {
     	Character player("Roland", 1, 500, 200, "Knight");
@@ -33,13 +44,13 @@ int main() {
 	Weapon* sword = new Weapon("Sword of justice", 15, 300, "Character/sword.txt", 35);
 	Weapon* warhammer = new Weapon("Mighty war hammer", 29, 371, "Character/warhammer.txt", 64); 
 	
-	backpack.addItem(armour);
+	backpack.addItem(armour);		//adding default items to backpack
 	backpack.addItem(bow);
 	backpack.addItem(crown);
 	backpack.addItem(helmet);
 	backpack.addItem(sword);
 
-	chest.addItem(axe);
+	chest.addItem(axe);			//adding default items to chest
 	chest.addItem(boots);
 	chest.addItem(fire_spell);
 	chest.addItem(floren);
@@ -74,8 +85,8 @@ int main() {
 		fflush(stdin);			//clear buffer after using getch()
 
 		//show menu
-		string choices[] = {"Player stats", "Inventory", "Chest", "Exit"};	
-		for(int i = 0; i < 4; i++) {
+		string choices[] = {"Player stats", "Inventory", "Chest", "Save", "Load", "Exit"};	
+		for(int i = 0; i < 6; i++) {
 			wattron(menuwin, A_REVERSE);
 			mvwaddch(menuwin,1, 1+i*20, choices[i].at(0));
 			wattroff(menuwin, A_REVERSE);
@@ -97,7 +108,7 @@ int main() {
 					mvwprintw(playerwin, i+4, 35, playerStats[i].c_str());
 				} 
 				wrefresh(playerwin);
-				wmove(menuwin, 1, 65);
+				
 				break;
 				}
 			case 'i':
@@ -162,9 +173,10 @@ int main() {
 								mvwprintw(inventorywin, 0, 0, "Slot is empty!");
 							}
 							wrefresh(inventorywin);
-							wmove(menuwin, 1, 65);
+							
 							break;
 						case 'm':
+							wclear(inventorywin);						
 							if(highlight < backpack.getActualSize()) {
 								if(chest.getActualSize() < chest.getCapacity()) {
 									chest.addItem(backpack.showItem(highlight));
@@ -250,6 +262,7 @@ int main() {
 							wrefresh(inventorywin);
 							break;
 						case 'm':
+							wclear(inventorywin);						
 							if(highlight < chest.getActualSize()) {
 								if(backpack.getActualSize() < backpack.getCapacity()) {
 									backpack.addItem(chest.showItem(highlight));
@@ -270,20 +283,44 @@ int main() {
 					} while(itemChoice != 'b');
 				break;
 				}
+			case 's':
+				oa << backpack;
+				mvwprintw(descriptionwin, 0, 45, "Saved succesfully!");
+				wrefresh(descriptionwin);
+				break;
+			case 'l':
+				//ia >> backpack;
+				mvwprintw(descriptionwin, 0, 45, "Loaded succesfully!");
+				wrefresh(descriptionwin);
+				break;
 			case 'e':
 				programOn = false;	//if program gets char 'e' it will set programOn to false and end the main do-while loop
 				break;
 			default:
 				break;
 		}
-		wmove(menuwin, 1, 65);
+		wmove(menuwin, 1, 105);
 		choice = wgetch(menuwin);		//move coursor to the main menu
 	}while(programOn == true);
-	
+
 	//makes sure program waits before exiting
 	//getch();
 	endwin(); 
 	/* NCURSES END */
-
+	
+	delete armour;
+	delete boots;
+	delete helmet;
+	delete shield;
+	delete crown;
+	delete floren;
+	delete fire_spell;
+	delete axe;
+	delete bow;
+	delete labrys;
+	delete mace;
+	delete sword;
+	delete warhammer;
+	
 	return 0;
 }
