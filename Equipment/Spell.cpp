@@ -28,3 +28,10 @@ vector<string> Spell::showStats() {
 std::string Spell::myType() {
     return "spell";
 }
+
+ostream& operator<<(ostream & ostr, const Spell & obj) { //example of operator overloading
+	ostr << static_cast<const Item&>(obj);
+	ostr << " MANA COST: " << obj.cost
+	     << " COOLDOWN: " << obj.cooldown;
+	return ostr;
+}

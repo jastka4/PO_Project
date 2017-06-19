@@ -26,3 +26,9 @@ std::string Money::myType()
 {
 	return "money";
 }
+
+ostream& operator<<(ostream & ostr, const Money & obj) { //example of operator overloading
+	ostr << static_cast<const Item&>(obj);
+	ostr << " AMOUNT: " << obj.amount;
+	return ostr;
+}

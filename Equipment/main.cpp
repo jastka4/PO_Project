@@ -20,10 +20,10 @@ bool programOn = true;
 unsigned char choice = 'p';
 const char* filename = "saved.txt";		//file to save/load inventory
 	//make the archive
-std::ofstream ofs(filename);
+ofstream ofs(filename);
 boost::archive::text_oarchive oa(ofs);
     	//open the archive
-//std::ifstream ifs(filename);
+//ifstream ifs(filename);
 //boost::archive::text_iarchive ia(ifs);
 
 int main() {
@@ -71,8 +71,8 @@ int main() {
 	WINDOW * playerwin = newwin(25, 50, 0, 5); 		//create window for the player view
 	WINDOW * inventorywin = newwin(10, 25, 4, 55);		//create window for the inventory view
 	WINDOW * descriptionwin = newwin(3, xMax-12, 26, 5); 	//create window for description
-	//box(inventorywin,0,0);
-	//PANEL * inventorypanel = *new_panel(inventorywin);
+
+	
 	box(menuwin, 0, 0);
 	refresh();
 	wrefresh(menuwin);
@@ -290,7 +290,7 @@ int main() {
 				break;
 			case 'l':
 				//ia >> backpack;
-				mvwprintw(descriptionwin, 0, 45, "Loaded succesfully!");
+				mvwprintw(descriptionwin, 0, 45, "Load isn't working. Can't load file :(");
 				wrefresh(descriptionwin);
 				break;
 			case 'e':

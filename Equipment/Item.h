@@ -19,9 +19,10 @@ public:
 	Item(){}	//default constructor required by boost library
 	~Item();
 	virtual void use() = 0;
-	std::vector<std::string> draw();
 	virtual std::vector<std::string> showStats() = 0;
 	virtual std::string myType() = 0;
+	std::vector<std::string> draw();
+	friend std::ostream& operator<<(std::ostream&,const Item&); //example of operator overloading
 protected:
 	std::string name;
 	double weight;

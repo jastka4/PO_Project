@@ -26,3 +26,9 @@ vector<string> Weapon::showStats() {
 string Weapon::myType() {
     return "weapon";
 }
+
+ostream& operator<<(ostream & ostr, const Weapon & obj) { //example of operator overloading
+	ostr << static_cast<const Item&>(obj);
+	ostr << " DAMAGE: " << obj.damage;
+	return ostr;
+}

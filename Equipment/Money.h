@@ -12,6 +12,7 @@ public:
 	void use();
 	std::vector<std::string> showStats();
 	std::string myType();
+	friend std::ostream& operator<<(std::ostream&,const Money&); //example of operator overloading
 private:
 	double amount;
 	

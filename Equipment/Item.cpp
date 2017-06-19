@@ -37,3 +37,11 @@ vector<string> Item::draw()
 	file.close();											//Close file
 	return lines;											//Print it to the screen
 }
+
+ostream& operator<<(ostream & ostr, const Item & obj) { //example of operator overloading
+	ostr << " NAME: " << obj.name
+	     << " WIEGHT: " << obj.weight
+	     << " PRICE: " << obj.price
+	     << " SOURCE: " << obj.source;
+	return ostr;
+}

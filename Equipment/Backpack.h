@@ -23,7 +23,7 @@ public:
   	template<typename Archive>
   	void serialize(Archive& ar, const unsigned version) {
 		ar & size;	  	//serialize vector of pointers to items
-        	for(size_t i = 0; i < 2; ++i){
+        	for(size_t i = 0; i < inventory.size(); ++i){
 		            ar & *inventory[i];}
 	}
 private:

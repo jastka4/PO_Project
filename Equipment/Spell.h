@@ -11,6 +11,7 @@ public:
 	void use();
 	std::vector<std::string> showStats();
 	std::string myType();
+	friend std::ostream& operator<<(std::ostream&,const Spell&); //example of operator overloading
 private: 
 	unsigned int cost;
 	unsigned int cooldown;
